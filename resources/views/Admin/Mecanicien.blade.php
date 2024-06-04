@@ -1,4 +1,6 @@
-@extends('layouts.admin')
+@extends('Admin.admin')
+
+@section('main-content')
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -77,7 +79,7 @@
         </div>
     </div>
 
-    <!-- Add Student Modal -->
+    <!-- Add mecanic Modal -->
     <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -117,8 +119,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Enregistrer</button>
                     </div>
                 </form>
             </div>
@@ -231,3 +233,5 @@
     </div>
     @endforeach
 </body>
+@endsection
+

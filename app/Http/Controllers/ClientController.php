@@ -9,7 +9,7 @@ class ClientController extends Controller
 {
     public function welcome(){
         $clients = User::where('role', 'Client')->simplePaginate(5);
-        return view('welcome', compact('clients'));
+        return view('Admin.client', compact('clients'));
     }
     public function addClient(Request $request)
     {
@@ -58,7 +58,7 @@ class ClientController extends Controller
         $client->role = 'Client';
 
         $client->save();
-        return redirect()->route('welcome');
+        return redirect()->route('Admin.client');
 
     }
     public function deleteClient(Request $request){

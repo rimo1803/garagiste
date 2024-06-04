@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MechanicController;
-
+use App\Http\Controllers\VehiculeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,7 @@ Route ::get('reset-password/{token}', [ForgotPasswordController ::class, 'showRe
 Route ::post('reset-password', [ForgotPasswordController ::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('/home', function () {
-    return view('home ');
+    return view('Admin.home');
 });
 Route::post('/home', function () {
     return view('home ');
@@ -45,9 +45,16 @@ Route::delete('/deleteClient',[ClientController::class,'deleteClient'])->name('d
 Route::delete('/showClient',[ClientController::class,'show'])->name('show');
 
 
-Route::get('/mecaniciens',[MechanicController::class,'welcome'])->name('welcome');
+Route::get('/mecaniciens',[MechanicController::class,'welcomee'])->name('welcomee');
 Route::post('/addMecanicien',[MechanicController::class,'addMechanic'])->name('addMechanic');
 Route::post('/updateMecanicien',[MechanicController::class,'updateMechanic'])->name('updateMechanic');
 Route::delete('/deleteMecanicien',[MechanicController::class,'deleteMechanic'])->name('deleteMechanic');
 Route::delete('/showMecanicien',[MechanicController::class,'show'])->name('show');
+
+
+Route::get('/vehicules',[VehiculeController::class,'welcomeee'])->name('welcomeee');
+Route::post('/addVehicule',[VehiculeController::class,'addVehicule'])->name('addVehicule');
+Route::post('/updateVehicule',[VehiculeController::class,'updateVehicule'])->name('updateVehicule');
+Route::delete('/deleteVehicule',[VehiculeController::class,'deleteVehicule'])->name('deleteVehicule');
+Route::delete('/showVehicule',[VehiculeController::class,'show'])->name('show');
 

@@ -57,7 +57,7 @@
 
         <!-- Nav Item - Profile -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('welcome') }}">
+            <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-user"></i>
                 <span>{{ __('Gestion des clients') }}</span>
             </a>

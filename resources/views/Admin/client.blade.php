@@ -1,4 +1,6 @@
-@extends('layouts.admin')
+@extends('Admin.admin')
+
+@section('main-content')
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -85,7 +87,7 @@
                 <form method="POST" action=" {{route('addClient')}}">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addStudentModalLabel"><i class="fas fa-user-plus"></i> Add Student</h5>
+                        <h5 class="modal-title" id="addStudentModalLabel"><i class="fas fa-user-plus"></i> Add Client</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -188,7 +190,7 @@
                 <form method="POST" action="{{route('updateClient')}} ">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editStudentModalLabel {{$client->id}}"><i class="fas fa-edit"></i> Edit Student</h5>
+                        <h5 class="modal-title" id="editStudentModalLabel {{$client->id}}"><i class="fas fa-edit"></i> Edit Client</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -231,3 +233,4 @@
     </div>
     @endforeach
 </body>
+@endsection

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class MechanicController extends Controller
 {
-    public function welcome(){
+    public function welcomee(){
         $mechanics = User::where('role', 'Mecanicien')->simplePaginate(5);
-        return view('Mecanicien', compact('mechanics'));
+        return view('Admin.Mecanicien', compact('mechanics'));
     }
     public function addMechanic(Request $request)
     {
@@ -34,7 +34,7 @@ class MechanicController extends Controller
         $mechanic->role = 'Mecanicien';
 
         $mechanic->save();
-        return redirect()->route('welcome')->with('success', 'Mecanicien created successfully.');
+        return redirect()->route('welcomee')->with('success', 'Mecanicien created successfully.');
     }
     public function updateMechanic(Request $request){
         $request->validate([
@@ -59,7 +59,7 @@ class MechanicController extends Controller
         $mechanic->role = 'Mecanicien';
 
         $mechanic->save();
-        return redirect()->route('welcome')->with('success', 'Mécanicien mis à jour avec succès.');
+        return redirect()->route('welcomee')->with('success', 'Mécanicien mis à jour avec succès.');
 
     }
     public function deleteMechanic(Request $request){
@@ -69,14 +69,14 @@ class MechanicController extends Controller
 
         User::destroy($mechanicId);
 
-        return redirect()->route('welcome')->with('success', 'Mécanicien supprimé avec succès.');
+        return redirect()->route('welcomee')->with('success', 'Mécanicien supprimé avec succès.');
 
     }
 
     public function show($id)
     {
         $mechanic = User::find($id);
-        if (!$client) {
+        if (!$mechanic) {
             return response()->json(['error' => 'Mecanicien not found'], 404);
         }
         return response()->json($mechanic);
