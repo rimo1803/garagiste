@@ -16,12 +16,12 @@ class VehiculeController extends Controller
     public function addVehicule(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+
             'mark' => 'required',
             'model' => 'required',
             'fuelType' => 'required',
             'registration' => 'required',
-            'photo' => 'required',
+            'photo' => '',
             'user_id' => 'required'
         ]);
 
@@ -36,14 +36,20 @@ class VehiculeController extends Controller
             'mark' => 'required',
             'model' => 'required',
             'fuelType' => 'required',
-            'registration' => 'required|unique:vehicules,registration,' . $request->id,
+            'registration' => 'required',
             'photo' => 'required',
             'user_id' => 'required'
         ]);
 
-        $vehicule = Vehicule::findOrFail($request->id);
-        $vehicule->update($request->all());
+        $vehicule = Vehicule::findOrFail($request->input('id'));
+        $vehicule->mark=$request->mark;
+        $vehicule->model=$request->model;
+        $vehicule->fuelType=$request->fuelType;
+        $vehicule->registration=$request->registration;
+        $vehicule->photo=$request->photo;
+        $vehicule->user_id=$request->user_id;
 
+        $vehicule->save();
         return redirect()->route('welcomeee')->with('success', 'Véhicule mis à jour avec succès.');
     }
 

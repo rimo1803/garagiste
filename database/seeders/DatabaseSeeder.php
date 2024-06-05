@@ -47,6 +47,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'client@gmail.com',
             'password' =>Hash::make('client'),
         ])->create();
+        $this->call([
+            InvoiceSeeder::class,
+            VehiculeSeeder::class,
+        ]);
 
     }
 }

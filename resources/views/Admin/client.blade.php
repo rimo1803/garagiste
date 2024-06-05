@@ -1,4 +1,4 @@
-@extends('Admin.admin')
+@extends('Admin.home')
 
 @section('main-content')
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
 
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -31,6 +32,36 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-black">Gestion des clients </h3>
+
+                <div class='max-w-md mx-auto'>
+                    <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+                        <div class="grid place-items-center h-full w-12 text-gray-300">
+
+                        </div>
+                        <form id="searchForm" onsubmit="return submitForm(event)" >
+                            @csrf
+                            <input  class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                            type="text"  id="search" name="search" placeholder="Search something.." />
+                        </form>
+                    </div>
+                </div>
+                <h1>hi</h1>
+                <script>
+                    function submitForm(event){
+                        event.preventDefault();
+                        var formData = $('#searchForm').serialize();
+                        var url = "{{ route('users.search')}}"   //  $("#searchForm").attr("action");
+
+                         //troisième methode de recherche sans actualisation de la page avec axios
+                        axios.post(url, formData)
+                        .then(response => {
+                                $("#divResult").html(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                    }
+                </script>
                 <hr>
                 <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addStudentModal">
                 <i class="fas fa-user-plus"></i>    Add Client

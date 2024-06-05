@@ -31,7 +31,8 @@
             <hr>
             <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addStudentModal">
                 <i class="fas fa-car"></i>  Add Vehicule
-                </button>
+            </button>
+
 
             <table class="table table-bordered">
                 <thead class="bg-light text-dark">
@@ -57,15 +58,15 @@
                                     <i class="fas fa-eye"></i>
                                 </button>
 
-                                <button class="btn btn-warning btn-sm" data-toggle="modal"
-                                    data-target="#editStudentModal{{$vehicule->id}}">
+                                <button class="btn btn-warning btn-sm btn-edit" data-client-id="{{$vehicule->id}}">
                                     <i class="fas fa-edit"></i>
                                 </button>
-<form method="POST" action="{{route('deleteVehicule')}} " class="d-inline">
 
+                                <form method="POST" action="{{route('deleteVehicule')}}" class="d-inline btn-delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <input type="hidden" name="vehiculeId" value="{{$vehicule->id}}">
+                                    <button type="submit" class="btn btn-danger btn-sm" >
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
@@ -74,12 +75,12 @@
                     @endforeach
                 </tbody>
             </table>
-            {{$vehicules->links()}}
+
         </div>
     </div>
 </div>
 <!-- Add Vehicle Modal -->
-<div class="modal fade" id="addStudenteModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel"
+<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -170,15 +171,83 @@
     </div>
 </div>
 @endforeach
+<!-- Modal d'édition du véhicule (pour chaque véhicule) -->
+@foreach($vehicules as $vehicule)
+<div class="modal fade" id="editVehicleModal{{$vehicule->id}}" tabindex="-1" role="dialog" aria-labelledby="editVehicleModalLabel{{$vehicule->id}}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editVehicleModalLabel{{$vehicule->id}}"><i class="fas fa-edit"></i> Modifier le véhicule</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{ route('updateVehicule') }}">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="{{ $vehicule->id }}">
+                    <div class="form-group">
+                        <label for="mark">Marque</label>
+                        <input type="text" name="mark" class="form-control" value="{{ $vehicule->mark }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Modèle</label>
+                        <input type="text" name="model" class="form-control" value="{{ $vehicule->model }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelType">Type de carburant</label>
+                        <input type="text" name="fuelType" class="form-control" value="{{ $vehicule->fuelType }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registration">Immatriculation</label>
+                        <input type="text" name="registration" class="form-control" value="{{ $vehicule->registration }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Photo</label>
+                        <input type="file" name="photo" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_id">Propriétaire</label>
+                        <input type="text" name="user_id" class="form-control" value="{{ $vehicule->user_id }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <script>
     $(document).ready(function(){
+        // Affichage du modal de détails du véhicule
         $('.btn-show').click(function(){
-            var vehicleId = $(this).data('vehicle-id');
-            $('#showVehicleModal' + vehicleId).modal('show');
+            var clientId = $(this).data('client-id');
+            $('#showClientModal' + clientId).modal('show');
+        });
+
+        // Affichage du modal d'édition du véhicule
+        $('.btn-edit').click(function(){
+    var vehiculeId = $(this).data('client-id');
+    $('#editVehicleModal' + vehiculeId).modal('show');
+});
+
+
+        // Soumission du formulaire de suppression du véhicule
+        $('.btn-delete').click(function(){
+            var form = $(this).closest('form');
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce véhicule?')) {
+                form.submit();
+            }
         });
     });
 </script>
 
-</body>
 @endsection
+
+
+
+</body>

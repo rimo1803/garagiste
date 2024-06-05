@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class SparePart extends Model
 {
     use HasFactory;
-    protected $table = 'spareparts';
+    protected $table = 'piece_de_rechange';
 
     protected $fillable = [
         'id',

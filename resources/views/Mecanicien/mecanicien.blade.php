@@ -43,9 +43,8 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item ">
             <a class="nav-link" href="#">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>{{ __('Dashboard') }}</span>
-            </a>
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Dashboard') }}</span></a>
         </li>
 
         <!-- Divider -->
@@ -58,48 +57,27 @@
 
         <!-- Nav Item - Profile -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('welcome') }}">
-                <i class="fas fa-user"></i>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-user"></i>
                 <span>{{ __('Gestion des clients') }}</span>
             </a>
         </li>
 
+
         <!-- Nav Item - About -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('welcomee') }}">
-                <i class="fas fa-hands-helping"></i>
-                <span>{{ __('Gestion des mécaniciens') }}</span>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-hands-helping"></i>
+                <span>{{ __('Gestion des mecanicienes') }}</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('welcomeee') }}">
-                <i class="fas fa-car"></i>
-                <span>{{ __('Gestion des véhicules') }}</span>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-hands-helping"></i>
+                <span>{{ __('mes piece') }}</span>
             </a>
         </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('index') }}">
-                <i class="fas fa-cogs"></i>
-                <span>{{ __('Gestion des pièces') }}</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.repairs') }}">
-                <i class="fas fa-tools"></i>
-                <span>{{ __('Gestion des réparations') }}</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('Admin.Facture') }}">
-                <i class="fas fa-file-invoice-dollar"></i>
-                <span>{{ __('Gestion des factures') }}</span>
-            </a>
-        </li>
-
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -127,17 +105,16 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <form id="searchForm" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button id="searchButton" class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="button">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -349,31 +326,5 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-   // Attachez un gestionnaire d'événements au bouton de recherche
-document.getElementById('searchButton').addEventListener('click', function() {
-    // Récupérer le terme de recherche saisi par l'utilisateur
-    var query = document.getElementById('searchInput').value;
-
-    // Envoyer une requête Ajax au serveur pour obtenir les résultats de la recherche
-    axios.get('/search', {
-        params: {
-            query: query
-        }
-    })
-    .then(function(response) {
-        // Afficher les résultats de la recherche
-        console.log(response.data);
-        // Vous pouvez ajouter ici du code pour afficher les résultats dans votre interface utilisateur
-    })
-    .catch(function(error) {
-        console.error(error);
-    });
-});
-
-
-</script>
-
 </body>
 </html>

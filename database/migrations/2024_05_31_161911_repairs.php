@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('mecanicNotes')->nullable();
             $table->text('clientNotes')->nullable();
             $table->foreignId('mecanicId')->constrained('users')->onDelete('cascade');
-            $table->foreignId('vehicleId')->constrained('vehicles')->onDelete('cascade');
+            $table->foreignId('vehiculeId')->constrained('vehicule')->onDelete('cascade');
             $table->timestamps();
         });
 

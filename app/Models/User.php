@@ -32,7 +32,10 @@ class User extends Authenticatable
     ];
     protected $factory = UserFactory::class;
 
-
+    public function spareParts()
+    {
+        return $this->hasMany(SparePart::class);
+    }
     public function vehicles()
     {
     return $this->hasMany(Vehicle::class);

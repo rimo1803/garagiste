@@ -80,6 +80,19 @@ class ClientController extends Controller
         }
         return response()->json($client);
     }
+    public function search()
+    {
+         $word = request('search');
+         $users = User::where('name','like','%'. $word .'%')
+         ->orWhere ('firstname','like','%'. $word .'%')//;
 
+         ->get();
+         return view('Admin.client', compact('users'));
 
+    }
+    public function showProfile($id)
+    {
+        $user = User::where('role', 'Client')->findOrFail($id);
+        return view('Client.profile', compact('user'));
+    }
 }
